@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tableau de bord – AgriSat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="sidebar">
+      <a class="sidebar-logo" href="index.html">AgriSat</a>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a class="sidebar-link active" href="index.html" aria-current="page">Accueil</a>
+        <a class="sidebar-link" href="parcelles.html">Mes parcelles</a>
+        <a class="sidebar-link" href="analyse-ndvi.html">Analyse NDVI</a>
+        <a class="sidebar-link" href="meteo.html">Météorologie</a>
+      </nav>
+    </header>
+
+        <section class="hero-section">
+      <div class="hero-inner">
+        <div>
+          <h1 class="hero-title">Optimisez vos récoltes. <span>Cultivez le futur.</span></h1>
+          <p class="hero-text">Suivez la santé de vos cultures par satellite, croisez-la avec la météo de vos parcelles et décidez au bon moment.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="analyse-ndvi.html">Lancer une analyse</a>
+            <a class="btn btn-secondary" href="parcelles.html">Ajouter une parcelle</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-panel">
+            <h2>Santé de la végétation</h2>
+            <p>Indice NDVI calculé par analyse satellitaire</p>
+            <div class="ndvi-scale"><span class="ndvi-marker"></span></div>
+            <div class="ndvi-scale-labels"><span>Sol nu</span><span>Faible</span><span>Dense</span></div>
+            <div class="hero-meta">
+              <div><strong>Parcelles</strong>Coordonnées et cultures</div>
+              <div><strong>Météo</strong>Pluie, température, vent</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="page-content">
+        <div id="dashboard-container">
+          <div class="section-header"><h2>Votre exploitation en un coup d’œil</h2></div>
+          <div id="loading-indicator" class="loading-state" role="status" hidden>Chargement des données…</div>
+          <div id="error-message" class="error-state" role="alert" hidden></div>
+
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></span>
+              <span class="stat-label">Parcelles enregistrées</span>
+              <span id="stat-parcelles" class="stat-value">–</span>
+            </div>
+            <div class="dashboard-card">
+              <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"/><path d="M5 19c3-4 6-7 9-9"/></svg></span>
+              <span class="stat-label">NDVI moyen</span>
+              <span id="stat-ndvi" class="stat-value">–</span>
+            </div>
+            <div class="dashboard-card">
+              <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z"/></svg></span>
+              <span class="stat-label">Température moyenne</span>
+              <span id="stat-temperature" class="stat-value">–</span>
+            </div>
+            <div class="dashboard-card">
+              <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+              <span class="stat-label">Précipitations (période)</span>
+              <span id="stat-precipitations" class="stat-value">–</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>Dernières analyses</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr><th>Parcelle</th><th>Période</th><th>NDVI moyen</th><th>Statut</th></tr>
+              </thead>
+              <tbody id="dernieres-analyses"></tbody>
+            </table>
+          </div>
+          <div id="empty-state" class="empty-state" hidden>Aucune analyse pour le moment. Lancez une analyse NDVI depuis la page « Analyse NDVI ».</div>
+        </div>
+
+        <section class="cta-band">
+          <h2>Ensemble, construisons une agriculture plus verte et prospère.</h2>
+          <a class="btn btn-primary" href="parcelles.html">Enregistrer ma première parcelle</a>
+        </section>
+    </main>
+  </div>
+</body>
+</html>

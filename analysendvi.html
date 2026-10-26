@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analyse satellitaire NDVI – AgriSat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="sidebar">
+      <a class="sidebar-logo" href="index.html">AgriSat</a>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a class="sidebar-link" href="index.html">Accueil</a>
+        <a class="sidebar-link" href="parcelles.html">Mes parcelles</a>
+        <a class="sidebar-link active" href="analyse-ndvi.html" aria-current="page">Analyse NDVI</a>
+        <a class="sidebar-link" href="meteo.html">Météorologie</a>
+      </nav>
+    </header>
+
+        <div class="page-header">
+      <div class="page-header-inner">
+        <h1 class="page-title">Analyse satellitaire NDVI</h1>
+        <p class="page-description">Mesurez la vigueur de la végétation d’une parcelle sur la période de votre choix.</p>
+      </div>
+    </div>
+
+    <main class="page-content">
+        
+        <div id="loading-indicator" class="loading-state" role="status" hidden>Analyse en cours, cela peut prendre quelques secondes…</div>
+        <div id="error-message" class="error-state" role="alert" hidden></div>
+
+        <section class="form-card" aria-labelledby="titre-parametres-ndvi">
+          <div class="section-header"><h2 id="titre-parametres-ndvi">Paramètres de l’analyse</h2></div>
+          <form id="form-analyse-ndvi" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="select-parcelle">Parcelle</label>
+                <select class="form-select" id="select-parcelle" name="parcelle" required>
+                  <option value="">Choisir une parcelle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="date-debut-ndvi">Date de début</label>
+                <input class="form-input" type="date" id="date-debut-ndvi" name="dateDebut" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="date-fin-ndvi">Date de fin</label>
+                <input class="form-input" type="date" id="date-fin-ndvi" name="dateFin" required>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="btn-analyser-ndvi">Lancer l’analyse</button>
+            </div>
+            <p id="message-analyse" role="status"></p>
+          </form>
+        </section>
+
+        <div class="section-header"><h2>Résultats</h2><span id="statut-analyse" class="status-badge">En attente</span></div>
+        <div class="dashboard-grid">
+          <div class="dashboard-card"><span class="stat-label">NDVI moyen</span><span id="ndvi-moyen" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">NDVI minimum</span><span id="ndvi-minimum" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">NDVI maximum</span><span id="ndvi-maximum" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">Pixels valides</span><span id="pixels-valides" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">Pixels exclus</span><span id="pixels-exclus" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">Période analysée</span><span id="periode-analyse" class="stat-value">–</span></div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="section-header"><h2>Interprétation</h2></div>
+          <p id="interpretation-ndvi" class="interpretation">Lancez une analyse pour obtenir l’interprétation du NDVI.</p>
+          <div class="ndvi-scale" aria-hidden="true"></div>
+          <div class="ndvi-scale-labels"><span>Sol nu ou eau</span><span>Végétation faible</span><span>Végétation dense</span></div>
+        </div>
+
+        <div class="section-header" style="margin-top:28px"><h2>Évolution du NDVI</h2></div>
+        <div class="chart-container"><canvas id="ndvi-chart" aria-label="Graphique d’évolution du NDVI"></canvas></div>
+    </main>
+  </div>
+</body>
+</html>

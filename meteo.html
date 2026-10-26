@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Météorologie – AgriSat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="sidebar">
+      <a class="sidebar-logo" href="index.html">AgriSat</a>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a class="sidebar-link" href="index.html">Accueil</a>
+        <a class="sidebar-link" href="parcelles.html">Mes parcelles</a>
+        <a class="sidebar-link" href="analyse-ndvi.html">Analyse NDVI</a>
+        <a class="sidebar-link active" href="meteo.html" aria-current="page">Météorologie</a>
+      </nav>
+    </header>
+
+        <div class="page-header">
+      <div class="page-header-inner">
+        <h1 class="page-title">Météorologie</h1>
+        <p class="page-description">Consultez la température, les précipitations, l’humidité et le vent sur la période choisie.</p>
+      </div>
+    </div>
+
+    <main class="page-content">
+        
+        <div id="loading-indicator" class="loading-state" role="status" hidden>Chargement des données météo…</div>
+        <div id="error-message" class="error-state" role="alert" hidden></div>
+
+        <section class="form-card" aria-labelledby="titre-periode-meteo">
+          <div class="section-header"><h2 id="titre-periode-meteo">Période</h2></div>
+          <form id="form-periode-meteo" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="select-parcelle">Parcelle</label>
+                <select class="form-select" id="select-parcelle" name="parcelle" required>
+                  <option value="">Choisir une parcelle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="date-debut-meteo">Date de début</label>
+                <input class="form-input" type="date" id="date-debut-meteo" name="dateDebut" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="date-fin-meteo">Date de fin</label>
+                <input class="form-input" type="date" id="date-fin-meteo" name="dateFin" required>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Afficher la météo</button>
+            </div>
+            <p id="message-meteo" role="status"></p>
+          </form>
+        </section>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card"><span class="stat-label">Température moyenne</span><span id="temperature-moyenne" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">Précipitations totales</span><span id="precipitations-total" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">Humidité moyenne</span><span id="humidite-moyenne" class="stat-value">–</span></div>
+          <div class="dashboard-card"><span class="stat-label">Vitesse moyenne du vent</span><span id="vitesse-vent-moyenne" class="stat-value">–</span></div>
+        </div>
+
+        <div class="chart-grid">
+          <div>
+            <h2 class="chart-title">Température</h2>
+            <div class="chart-container"><canvas id="temperature-chart" aria-label="Graphique de température"></canvas></div>
+          </div>
+          <div>
+            <h2 class="chart-title">Précipitations</h2>
+            <div class="chart-container"><canvas id="precipitations-chart" aria-label="Graphique des précipitations"></canvas></div>
+          </div>
+          <div>
+            <h2 class="chart-title">Humidité</h2>
+            <div class="chart-container"><canvas id="humidite-chart" aria-label="Graphique d’humidité"></canvas></div>
+          </div>
+        </div>
+    </main>
+  </div>
+</body>
+</html>

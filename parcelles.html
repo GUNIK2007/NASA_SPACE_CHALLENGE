@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parcelles – AgriSat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="sidebar">
+      <a class="sidebar-logo" href="index.html">AgriSat</a>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a class="sidebar-link" href="index.html">Accueil</a>
+        <a class="sidebar-link active" href="parcelles.html" aria-current="page">Mes parcelles</a>
+        <a class="sidebar-link" href="analyse-ndvi.html">Analyse NDVI</a>
+        <a class="sidebar-link" href="meteo.html">Météorologie</a>
+      </nav>
+    </header>
+
+        <div class="page-header">
+      <div class="page-header-inner">
+        <h1 class="page-title">Parcelles</h1>
+        <p class="page-description">Enregistrez vos parcelles avec leurs coordonnées pour pouvoir les analyser par satellite.</p>
+      </div>
+    </div>
+
+    <main class="page-content">
+        
+        <div id="loading-indicator" class="loading-state" role="status" hidden>Chargement des parcelles…</div>
+        <div id="error-message" class="error-state" role="alert" hidden></div>
+        <div id="success-message" class="success-state" role="status" hidden></div>
+
+        <section class="form-card" aria-labelledby="titre-nouvelle-parcelle">
+          <div class="section-header"><h2 id="titre-nouvelle-parcelle">Nouvelle parcelle</h2></div>
+          <form id="form-parcelle" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="nom-parcelle">Nom de la parcelle</label>
+                <input class="form-input" type="text" id="nom-parcelle" name="nomParcelle" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="latitude-parcelle">Latitude</label>
+                <input class="form-input" type="number" id="latitude-parcelle" name="latitude" step="any" min="-90" max="90" placeholder="6.177097" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="longitude-parcelle">Longitude</label>
+                <input class="form-input" type="number" id="longitude-parcelle" name="longitude" step="any" min="-180" max="180" placeholder="1.212840" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="superficie-parcelle">Superficie (hectares)</label>
+                <input class="form-input" type="number" id="superficie-parcelle" name="superficie" step="any" min="0" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="culture-parcelle">Culture</label>
+                <select class="form-select" id="culture-parcelle" name="culture" required>
+                  <option value="">Choisir une culture</option>
+                <option value="maïs">Maïs</option>
+                <option value="manioc">Manioc</option>
+                <option value="riz">Riz</option>
+                <option value="sorgho">Sorgho</option>
+                <option value="igname">Igname</option>
+                <option value="coton">Coton</option>
+                <option value="café">Café</option>
+                <option value="cacao">Cacao</option>
+                <option value="autre">Autre</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="btn-enregistrer-parcelle">Enregistrer la parcelle</button>
+            </div>
+            <p id="message-parcelle" role="status"></p>
+          </form>
+        </section>
+
+        <div class="section-header"><h2>Mes parcelles</h2></div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr><th>Nom</th><th>Culture</th><th>Superficie (ha)</th><th>Latitude</th><th>Longitude</th></tr>
+            </thead>
+            <tbody id="liste-parcelles"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="empty-state">Aucune parcelle enregistrée. Remplissez le formulaire ci-dessus pour ajouter la première.</div>
+    </main>
+  </div>
+</body>
+</html>
